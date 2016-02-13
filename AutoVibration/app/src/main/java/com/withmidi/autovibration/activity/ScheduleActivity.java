@@ -45,15 +45,9 @@ public class ScheduleActivity extends AppCompatActivity {
 
         mTimaTableView = (TimeTableView) findViewById(R.id.main_timetable_ly);
 
-        sqlManager.insert("INSERT INTO `schedule` (startnum,endnum,week,name,teacher,classroom) VALUES ('" + 1 + "', '" + 2 + "', '" + 1 + "', 'test', 'test', '101')");
+//        sqlManager.insert("INSERT INTO `schedule` (startnum,endnum,week,name,teacher,classroom) VALUES ('" + 1 + "', '" + 2 + "', '" + 1 + "', 'test', 'test', '101')");
 
-        // schedule select query
-        Cursor cursor = sqlManager.getAllSchedule();
 
-        while (cursor.moveToNext()) {
-            mList.add(new TimeTableModel(cursor.getInt(0), cursor.getInt(1), cursor.getInt(2), cursor.getString(3), cursor.getString(4), cursor.getString(5)));
-        }
-        mTimaTableView.setTimeTable(mList);
 
 
     }
@@ -62,6 +56,15 @@ public class ScheduleActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
 
+        mTimaTableView.removeAllViews();
+
+        // schedule select query
+        Cursor cursor = sqlManager.getAllSchedule();
+
+        while (cursor.moveToNext()) {
+            mList.add(new TimeTableModel(cursor.getInt(0), cursor.getInt(1), cursor.getInt(2), cursor.getString(3), cursor.getString(4), cursor.getString(5)));
+        }
+        mTimaTableView.setTimeTable(mList);
     }
 
     @Override
