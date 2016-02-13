@@ -15,18 +15,27 @@
 
         <receiver android:name=".alarm.AlarmServiceReceiver" android:process=":remote"/>
         <activity android:name=".activity.MainActivity">
+
+        </activity>
+        <activity android:name=".activity.ScheduleActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+<<<<<<< HEAD
         <activity android:name=".activity.schedule.ScheduleActivity" />
         <activity android:name=".activity.schedule.AddScheduleActivity" />
         <activity android:name=".activity.calendar.CalendarActivity" />
         <activity android:name=".activity.ChangeModeActivity" />
         <activity android:name=".activity.calendar.DetailCalendarSettingActivity" />
         <activity android:name=".alarm.AlarmSystemActivity"></activity>
+=======
+        <activity android:name=".activity.AddScheduleActivity" />
+        <activity android:name=".activity.CalendarActivity" />
+        <activity android:name=".activity.ChangeModeActivity"></activity>
+>>>>>>> 80ff3b7d2ff799e6ba25048a896ed5c09807b50e
     </application>
 
 </manifest>

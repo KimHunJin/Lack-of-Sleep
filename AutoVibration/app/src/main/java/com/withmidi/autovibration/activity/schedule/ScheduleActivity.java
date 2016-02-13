@@ -1,11 +1,16 @@
 package com.withmidi.autovibration.activity.schedule;
 
-import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
+import android.content.DialogInterface;
+import android.database.Cursor;
 import android.os.Bundle;
-import android.util.Log;
+import android.support.v7.app.AlertDialog;
+import android.support.v7.app.AppCompatActivity;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.withmidi.autovibration.R;
+import com.withmidi.autovibration.db.SQLManager;
 import com.withmidi.autovibration.util.TimeTableModel;
 import com.withmidi.autovibration.view.TimeTableView;
 
@@ -27,54 +32,91 @@ public class ScheduleActivity extends AppCompatActivity {
 
     private TimeTableView mTimaTableView;
     private List<TimeTableModel> mList;
+    public static SQLManager sqlManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_schedule);
 
-        Intent it = getIntent();
-        String mColumn = it.getExtras().getString("column");
-        String mLow = it.getExtras().getString("low");
-
-        Log.e("aa",mColumn);
-        mColumn = mColumn.substring(0,1);
-        Log.e("aa",mColumn);
-        int column = Integer.parseInt(mColumn);
-        int low = Integer.parseInt(mLow);
+        sqlManager = new SQLManager(getApplicationContext(), "autovibration.db", null, 1);
 
         mList = new ArrayList<TimeTableModel>();
 
         mTimaTableView = (TimeTableView) findViewById(R.id.main_timetable_ly);
-        mTimaTableView.setMaxnum(low);
-        mTimaTableView.setWeeknum(column);
-        addList();
+
+
+//        sqlManager.insert("INSERT INTO `schedule` (startnum,endnum,week,name,teacher,classroom) VALUES ('" + 1 + "', '" + 2 + "', '" + 1 + "', 'test', 'test', '101')");
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        mTimaTableView.removeAllViews();
+
+        // schedule select query
+        Cursor cursor = sqlManager.getAllSchedule();
+
+        while (cursor.moveToNext()) {
+            mList.add(new TimeTableModel(cursor.getInt(0), cursor.getInt(1), cursor.getInt(2), cursor.getString(3), cursor.getString(4), cursor.getString(5)));
+        }
         mTimaTableView.setTimeTable(mList);
     }
 
-    private void addList() {
-        mList.add(new TimeTableModel(0, 1, 2, 1, "8:20", "10:10", "Test1",
-                "Test1", "1", "2-13"));
-        mList.add(new TimeTableModel(0, 3, 4, 1, "8:20", "10:10", "Test2",
-                "Test2", "2", "2-13"));
-        mList.add(new TimeTableModel(0, 6, 7, 1, "8:20", "10:10", "Test3",
-                "Test3","3", "2-13"));
-        mList.add(new TimeTableModel(0, 6, 7, 2, "8:20", "10:10", "Test4",
-                "Test4", "4", "2-13"));
-        mList.add(new TimeTableModel(0, 8, 9, 2, "8:20", "10:10", "Test5",
-                "Test5", "5", "2-13"));
-        mList.add(new TimeTableModel(0, 1, 2, 3, "8:20", "10:10", "Test6",
-                "Test6", "6", "2-13"));
-        mList.add(new TimeTableModel(0, 6, 7, 3, "8:20", "10:10", "Test7",
-                "Test7", "7", "2-13"));
-        mList.add(new TimeTableModel(0, 3, 5, 4, "8:20", "10:10", "Test8",
-                "Test8", "8", "2-13"));
-        mList.add(new TimeTableModel(0, 8, 9, 4, "8:20", "10:10", "Test9",
-                "Test9", "9", "2-13"));
-        mList.add(new TimeTableModel(0, 3, 5, 5, "8:20", "10:10", "Test10",
-                "Test10", "10", "2-13"));
-        mList.add(new TimeTableModel(0, 6, 8, 5, "8:20", "10:10", "Test11",
-                "Test11", "11", "2-13"));
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+
+
+        //noinspection SimplifiableIfStatement
+        if (id == R.id.action_setweek) {
+            final String[] ArrayList = {"월요일 ~ 금요일", "월요일 ~ 토요일", "월요일 ~ 일요일"};
+            AlertDialog.Builder dlg = new AlertDialog.Builder(ScheduleActivity.this);
+            dlg.setTitle("요일 설정");
+
+            dlg.setSingleChoiceItems(ArrayList, 0, new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                }
+            });
+
+            dlg.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    Toast.makeText(ScheduleActivity.this, "설정 되었습니다..", Toast.LENGTH_LONG).show();
+                }
+            });
+            dlg.setNegativeButton("취소", null);
+            dlg.show();
+        }
+        if (id == R.id.action_reset) {
+            AlertDialog.Builder dlg = new AlertDialog.Builder(ScheduleActivity.this);//(엑티비티명.this)
+            dlg.setTitle("초기화");
+            dlg.setMessage("정말 초기화 하시겠습니까?");
+
+            // 확인이나 닫기 1개만 사용랄 때, ("문자열",리스너)
+            dlg.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    Toast.makeText(ScheduleActivity.this, "초기화 되었습니다.", Toast.LENGTH_LONG).show();
+                }
+            });
+            dlg.setNegativeButton("취소", null);
+            //설정이 모두 끝났으면 show로 뛰우기
+            dlg.show();
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 
 }

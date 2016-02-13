@@ -1,85 +1,357 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/line1"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+<<<<<<< HEAD
     tools:context=".activity.schedule.AddScheduleActivity">
-
-    <EditText
-        android:id="@+id/edtScheduleName"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="시간표 제목"
-        android:textSize="30dp" />
-
+=======
+    android:weightSum="1">
+>>>>>>> 80ff3b7d2ff799e6ba25048a896ed5c09807b50e
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
         android:orientation="horizontal">
 
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginLeft="20dp"
+            android:src="@drawable/class32px" />
+
         <EditText
-            android:id="@+id/edtScheduleColumn"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="0.9"
-            android:editable="false"
-            android:hint="요일 설정" />
-
-        <Button
-            android:id="@+id/btnMakeColumn"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="0.1"
-            android:onClick="onDialogClick"
-            android:text="\u25BC"
-            android:textSize="20sp" />
-
+            android:id="@+id/edtClassName"
+            android:layout_width="230dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:hint="수업" />
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
         android:orientation="horizontal">
 
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginLeft="20dp"
+            android:src="@drawable/professor32px" />
+
         <EditText
-            android:id="@+id/edtScheduleLow"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="0.9"
-            android:editable="false"
-            android:hint="교시 설정" />
-
-        <Button
-            android:id="@+id/btnMakeLow"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="0.1"
-            android:onClick="onDialogClick"
-            android:text="\u25BC"
-            android:textSize="20sp" />
-
+            android:id="@+id/edtClassPro"
+            android:layout_width="230dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:hint="교수님" />
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
         android:orientation="horizontal">
 
-        <Button
-            android:id="@+id/btnSave"
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginLeft="20dp"
+            android:src="@drawable/room" />
+
+        <EditText
+            android:id="@+id/edtClassRoom"
+            android:layout_width="230dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:hint="강의실" />
+    </LinearLayout>
+
+    <RadioGroup
+        android:id="@+id/rgDay"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="3dp"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/rbMon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:onClick="onScheduleClick"
-            android:text="저장" />
+            android:text="월"
+            android:textSize="12dp" />
+
+        <RadioButton
+            android:id="@+id/rbTue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="1dp"
+            android:text="화"
+            android:textSize="12dp" />
+
+        <RadioButton
+            android:id="@+id/rbWed"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="1dp"
+            android:text="수"
+            android:textSize="12dp" />
+
+        <RadioButton
+            android:id="@+id/rbThu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="1dp"
+            android:text="목"
+            android:textSize="12dp" />
+
+        <RadioButton
+            android:id="@+id/rbFri"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="1dp"
+            android:text="금"
+            android:textSize="12dp" />
+        <RadioButton
+            android:id="@+id/rbSat"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="1dp"
+            android:text="토"
+            android:textSize="12dp" />
+        <RadioButton
+            android:id="@+id/rbSun"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="1dp"
+            android:text="일"
+            android:textSize="12dp" />
+    </RadioGroup>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:text="수업시간"
+            android:textSize="20dp" />
 
         <Button
+            android:id="@+id/btnStart"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:text="수업 시작" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:text=" ~ "
+            android:textSize="20dp" />
+
+        <Button
+            android:id="@+id/btnEnd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:text="수업 종료" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/paintColor"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="배경색상"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="20dp"
+            android:textSize="20dp" />
+
+        <ImageButton
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_margin="2dp"
+            android:background="#ae98e6cc"
+            android:onClick="clicked"
+            android:tag="#ae98e6cc" />
+
+        <ImageButton
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_margin="2dp"
+            android:layout_marginLeft="10dp"
+            android:background="#cd9595dd"
+            android:onClick="clicked"
+            android:tag="#cd9595dd" />
+
+        <ImageButton
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_margin="2dp"
+            android:layout_marginLeft="10dp"
+            android:background="#cdd57e7e"
+            android:onClick="clicked"
+            android:tag="#cdd57e7e" />
+
+        <ImageButton
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_margin="2dp"
+            android:layout_marginLeft="10dp"
+            android:background="#cdd09bd9"
+            android:onClick="clicked"
+            android:tag="#cdd09bd9" />
+
+        <ImageButton
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_margin="2dp"
+            android:layout_marginLeft="10dp"
+            android:background="#d1f1c358"
+            android:onClick="clicked"
+            android:tag="#d1f1c358" />
+
+        <ImageButton
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_margin="2dp"
+            android:background="#cdf4eb00"
+            android:onClick="clicked"
+            android:tag="#cdf4eb00" />
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <ImageButton
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginLeft="108dp"
+            android:layout_marginTop="2dp"
+            android:layout_marginRight="2dp"
+            android:background="#cd03ffe6"
+            android:onClick="clicked"
+            android:tag="#cd03ffe6" />
+
+        <ImageButton
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_margin="2dp"
+            android:background="#cd03abff"
+            android:onClick="clicked"
+            android:tag="#cd03abff" />
+
+        <ImageButton
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_margin="2dp"
+            android:background="#cddd03ff"
+            android:onClick="clicked"
+            android:tag="#cddd03ff" />
+
+        <ImageButton
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_margin="2dp"
+            android:background="#cd64fd41"
+            android:onClick="clicked"
+            android:tag="#cd64fd41" />
+        <ImageButton
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_margin="2dp"
+            android:background="#cd7941fd"
+            android:onClick="clicked"
+            android:tag="#cd7941fd" />
+        <ImageButton
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_margin="2dp"
+            android:background="#cdfd7d41"
+            android:onClick="clicked"
+            android:tag="#cdfd7d41" />
+    </LinearLayout>
+
+
+    <RadioGroup
+        android:id="@+id/rgMode"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/rbDef"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:text="없음"
+            android:textSize="15dp" />
+
+        <RadioButton
+            android:id="@+id/rbBell"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="false"
+            android:text="소리모드"
+            android:textSize="15dp" />
+
+        <RadioButton
+            android:id="@+id/rbVib"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:checked="false"
+            android:text="진동모드"
+            android:textSize="15dp" />
+
+        <RadioButton
+            android:id="@+id/rbNoBell"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:checked="false"
+            android:text="무음모드"
+            android:textSize="15dp" />
+    </RadioGroup>
+
+    <GridLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal">
+
+        <ImageButton
+            android:id="@+id/btnOk"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:src="@drawable/save32px" />
+
+        <ImageButton
             android:id="@+id/btnCancel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:onClick="onScheduleClick"
-            android:text="취소" />
-    </LinearLayout>
-
+            android:layout_gravity="right"
+            android:layout_margin="10dp"
+            android:src="@drawable/cancel32px" />
+    </GridLayout>
 </LinearLayout>
