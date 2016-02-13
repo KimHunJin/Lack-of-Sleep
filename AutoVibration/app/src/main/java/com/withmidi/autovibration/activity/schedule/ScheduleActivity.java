@@ -60,6 +60,8 @@ public class ScheduleActivity extends AppCompatActivity {
 
         mTimaTableView.removeAllViews();
 
+        mList.clear();
+
         // schedule select query
         Cursor cursor = sqlManager.getAllSchedule();
 
@@ -113,7 +115,9 @@ public class ScheduleActivity extends AppCompatActivity {
             dlg.setPositiveButton("확인", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
+                    sqlManager.initializeSchedule();
                     Toast.makeText(ScheduleActivity.this, "초기화 되었습니다.", Toast.LENGTH_LONG).show();
+                    onResume();
                 }
             });
             dlg.setNegativeButton("취소", null);

@@ -282,7 +282,7 @@ public class TimeTableView extends LinearLayout {
 
     private void addTimeName(String name) {
         boolean isRepeat = true;
-        for (int i = 0; i < 15; i++) {
+        for (int i = 0; i < 20; i++) {
             if (name.equals(colorStr[i])) {
                 isRepeat = true;
                 break;
