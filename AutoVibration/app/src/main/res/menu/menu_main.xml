@@ -10,11 +10,16 @@
         app:showAsAction="always">
         <menu>
             <item
-                android:id="@+id/action_setweek"
-                android:title="@string/action_setweek"/>
+                android:id="@+id/action_setWeek"
+                android:title="@string/action_setWeek"/>
             <item
                 android:id="@+id/action_reset"
                 android:title="@string/action_reset"/>
+
+            <item
+                android:id="@+id/intent_Calendar"
+                android:title="캘린더로 이동"/>
+
         </menu>
     </item>
 

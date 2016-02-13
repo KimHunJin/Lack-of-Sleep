@@ -1,5 +1,6 @@
-package com.withmidi.autovibration.activity;
+package com.withmidi.autovibration.activity.calendar;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -196,7 +197,11 @@ public class CalendarActivity extends AppCompatActivity implements AdapterView.O
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         if(select == position) {
-            Toast.makeText(getApplicationContext(),"선택 날짜 : " + (mThisMonthCalendar.get(Calendar.MONTH)+1) + "월" + (position-7) + "일",Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(),"선택 날짜 : " + (mThisMonthCalendar.get(Calendar.MONTH)+1) + "월" + mDayList.get(position).getDay()+ "일",Toast.LENGTH_SHORT).show();
+            Intent it = new Intent(getApplicationContext(),DetailCalendarSettingActivity.class);
+            it.putExtra("month",mThisMonthCalendar.get(Calendar.MONTH)+1);
+            it.putExtra("day",mDayList.get(position).getDay());
+            startActivity(it);
         } else {
             select = position;
         }
