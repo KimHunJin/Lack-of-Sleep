@@ -70,4 +70,10 @@ public class SQLManager extends SQLiteOpenHelper {
         db.execSQL(query);
         db.close();
     }
+
+    public void initializeSchedule(){
+        SQLiteDatabase db = getWritableDatabase();
+        db.execSQL("DELETE FROM `schedule`");
+        db.close();
+    }
 }

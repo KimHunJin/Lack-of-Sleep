@@ -60,9 +60,15 @@ public class AddScheduleActivity extends AppCompatActivity implements View.OnCli
         getDaySchedule();
 
         initializeLayout();
+        
         // 임의값 넣기
-        btnStart.setText(4 + "");
-        btnEnd.setText(6 + "");
+        btnStart.setText(startnum+"");
+        if(startnum+3>=9){
+            btnEnd.setText(9 + "");
+        }else{
+            btnEnd.setText(startnum+3 + "");
+        }
+
 
         initializeSetting();
 
