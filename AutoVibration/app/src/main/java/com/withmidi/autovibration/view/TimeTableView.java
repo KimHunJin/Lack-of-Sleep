@@ -259,6 +259,7 @@ public class TimeTableView extends LinearLayout {
                 itAddSechedule.putExtra("name",model.getName());
                 itAddSechedule.putExtra("teacher",model.getTeacher());
                 itAddSechedule.putExtra("classroom",model.getClassroom());
+                itAddSechedule.putExtra("mode",model.getMode());
                 getContext().startActivity(itAddSechedule);
                 return false;
             }

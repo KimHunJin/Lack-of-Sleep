@@ -13,8 +13,8 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
-import com.withmidi.autovibration.alarm.AlarmSystemActivity;
 import com.withmidi.autovibration.R;
+import com.withmidi.autovibration.alarm.AlarmSystemActivity2;
 
 import java.util.Calendar;
 import java.util.GregorianCalendar;
@@ -50,6 +50,11 @@ public class DetailCalendarSettingActivity extends AppCompatActivity {
         txtFinishTime = (TextView) findViewById(R.id.txtFinishTime);
         rdgMode = (RadioGroup)findViewById(R.id.rdgMode);
         edtTitle = (EditText)findViewById(R.id.edtTitle);
+
+        android.support.v7.app.ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayShowHomeEnabled(false);
+        actionBar.setDisplayShowCustomEnabled(true);
+        actionBar.setDisplayShowTitleEnabled(false);
 
     }
 
@@ -98,7 +103,7 @@ public class DetailCalendarSettingActivity extends AppCompatActivity {
                     return;
                 }
 
-                Intent it = new Intent(getApplicationContext(), AlarmSystemActivity.class);
+                Intent it = new Intent(getApplicationContext(), AlarmSystemActivity2.class);
                 it.putExtra("startTime",startTime);
                 it.putExtra("finishTime",finishTime);
                 it.putExtra("mode",mode);

@@ -7,13 +7,24 @@ public class TimeTableModel {
 	private String name="";
 	private String teacher="";
 	private String classroom="";
+	private String modeItem="";
+
 
 	@Override
 	public String toString() {
+
 		return "TimeTableModel [startnum=" + startnum
 				+ ", endnum=" + endnum + ", week=" + week + ", name=" + name
-				+ ", teacher=" + teacher + ", classroom=" + classroom
+				+ ", teacher=" + teacher + ", classroom=" + classroom + ", mode=" + modeItem
 				+ "]";
+	}
+
+	public String getMode() {
+		return modeItem;
+	}
+
+	public void setMode(String mode) {
+		this.modeItem = mode;
 	}
 
 	public int getStartnum() {
@@ -69,7 +80,7 @@ public class TimeTableModel {
 	}
 
 	public TimeTableModel(int startnum, int endnum, int week,
-			String name, String teacher, String classroom) {
+			String name, String teacher, String classroom, String mode) {
 		super();
 		this.startnum = startnum;
 		this.endnum = endnum;
@@ -77,6 +88,8 @@ public class TimeTableModel {
 		this.name = name;
 		this.teacher = teacher;
 		this.classroom = classroom;
+		this.modeItem = mode;
+
 	}
 
 }

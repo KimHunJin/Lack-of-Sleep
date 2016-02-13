@@ -16,8 +16,8 @@ public class SQLManager extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("CREATE TABLE `schedule` (startnum INTEGER, endnum INTEGER, week INTEGER, name TEXT, teacher TEXT, classroom, mode INTEGER);");
-        db.execSQL("CREATE TABLE `time` (day INTEGER, startHour INTEGER, startMinute INTEGER, finishHour INTEGER, finishMinute INTEGER");
+        db.execSQL("CREATE TABLE `schedule` (startnum INTEGER, endnum INTEGER, week INTEGER, name TEXT, teacher TEXT, classroom TEXT, mode TEXT);");
+//        db.execSQL("CREATE TABLE `time` (day INTEGER, startHour INTEGER, startMinute INTEGER, finishHour INTEGER, finishMinute INTEGER");
     }
 
     @Override
@@ -47,17 +47,11 @@ public class SQLManager extends SQLiteOpenHelper {
 
     public Cursor getDateInfo() {
         SQLiteDatabase db = getWritableDatabase();
-        Cursor cursor = db.rawQuery("SELECT `week`,`startnum`, `endnum` FROM `schedule` ORDER BY `week`,`startnum` ASC;",null);
+        Cursor cursor = db.rawQuery("SELECT `week`,`startnum`, `endnum`, `mode` FROM `schedule` ORDER BY `week`,`startnum` ASC;",null);
 
         return cursor;
     }
 
-    public Cursor getMode() {
-        SQLiteDatabase db = getWritableDatabase();
-        Cursor cursor = db.rawQuery("SELECT  FROM `schedule` ORDER BY `week`,`startnum` ASC;",null);
-
-        return cursor;
-    }
 
     public void delete(String query){
         SQLiteDatabase db = getWritableDatabase();

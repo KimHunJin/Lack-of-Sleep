@@ -38,7 +38,7 @@ public class AddScheduleActivity extends AppCompatActivity implements View.OnCli
     String name = "";
     String teacher = "";
     String classroom = "";
-    String mode;
+    String mode = "";
 
     EditText edtClassName, edtClassPro, edtClassRoom;
     RadioGroup rgDay;
@@ -73,6 +73,11 @@ public class AddScheduleActivity extends AppCompatActivity implements View.OnCli
         initializeSetting();
 
         setListener();
+
+        android.support.v7.app.ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayShowHomeEnabled(false);
+        actionBar.setDisplayShowCustomEnabled(true);
+        actionBar.setDisplayShowTitleEnabled(false);
     }
 
 
@@ -84,7 +89,7 @@ public class AddScheduleActivity extends AppCompatActivity implements View.OnCli
         Cursor cursor = sqlManager.getDaySchedule(week);
 
         while (cursor.moveToNext()) {
-            mList.add(new TimeTableModel(cursor.getInt(0), cursor.getInt(1), cursor.getInt(2), cursor.getString(3), cursor.getString(4), cursor.getString(5)));
+            mList.add(new TimeTableModel(cursor.getInt(0), cursor.getInt(1), cursor.getInt(2), cursor.getString(3), cursor.getString(4), cursor.getString(5), cursor.getString(6)));
         }
     }
 
@@ -99,6 +104,7 @@ public class AddScheduleActivity extends AppCompatActivity implements View.OnCli
         }
         week = itReceive.getExtras().getInt("week");
         startnum = itReceive.getExtras().getInt("startnum");
+        mode = itReceive.getExtras().getString("mode");
     }
 
 
@@ -191,7 +197,7 @@ public class AddScheduleActivity extends AppCompatActivity implements View.OnCli
         } else {
             // schedule insert query
             Log.e("insert", startnum + "d" + endnum + "s" + week + name + teacher + classroom);
-            sqlManager.insert("INSERT INTO `schedule` (startnum,endnum,week,name,teacher,classroom) VALUES ('" + startnum1 + "', '" + endnum1 + "', '" + week1 + "', '" + name1 + "', '" + teacher1 + "', '" + classroom1 + "')");
+            sqlManager.insert("INSERT INTO `schedule` (startnum,endnum,week,name,teacher,classroom,mode) VALUES ('" + startnum1 + "', '" + endnum1 + "', '" + week1 + "', '" + name1 + "', '" + teacher1 + "', '" + classroom1 + "', '" + mode + "')");
         }
         finish();
     }

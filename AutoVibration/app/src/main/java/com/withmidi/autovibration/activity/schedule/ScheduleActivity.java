@@ -28,7 +28,6 @@ import java.util.List;
  * 하기귀차나서
  * 자려고함
  * 아침 7시네.. 캘린더에서 뻘짓을 너무 했다..
- *
  */
 public class ScheduleActivity extends AppCompatActivity {
 
@@ -48,10 +47,6 @@ public class ScheduleActivity extends AppCompatActivity {
         mTimaTableView = (TimeTableView) findViewById(R.id.main_timetable_ly);
 
 //        sqlManager.insert("INSERT INTO `schedule` (startnum,endnum,week,name,teacher,classroom) VALUES ('" + 1 + "', '" + 2 + "', '" + 1 + "', 'test', 'test', '101')");
-
-
-
-
     }
 
     @Override
@@ -66,7 +61,7 @@ public class ScheduleActivity extends AppCompatActivity {
         Cursor cursor = sqlManager.getAllSchedule();
 
         while (cursor.moveToNext()) {
-            mList.add(new TimeTableModel(cursor.getInt(0), cursor.getInt(1), cursor.getInt(2), cursor.getString(3), cursor.getString(4), cursor.getString(5)));
+            mList.add(new TimeTableModel(cursor.getInt(0), cursor.getInt(1), cursor.getInt(2), cursor.getString(3), cursor.getString(4), cursor.getString(5), cursor.getString(6)));
         }
         mTimaTableView.setTimeTable(mList);
     }
@@ -125,8 +120,8 @@ public class ScheduleActivity extends AppCompatActivity {
             dlg.show();
         }
 
-        if(id == R.id.intent_Calendar) {
-            startActivity(new Intent(getApplicationContext(),CalendarActivity.class));
+        if (id == R.id.intent_Calendar) {
+            startActivity(new Intent(getApplicationContext(), CalendarActivity.class));
         }
 
         return super.onOptionsItemSelected(item);

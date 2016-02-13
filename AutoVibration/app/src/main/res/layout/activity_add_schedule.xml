@@ -10,7 +10,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="25dp"
         android:orientation="horizontal">
 
         <ImageView
@@ -66,7 +66,18 @@
             android:layout_marginLeft="20dp"
             android:hint="강의실" />
     </LinearLayout>
-
+    <TextView
+        android:background="#e6e6fa"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="3dp"
+        android:layout_marginLeft="2dp"
+        android:id="@+id/txtSetweek"
+        android:layout_width="match_parent"
+        android:layout_height="24dp"
+        android:text="요일 설정"
+        android:textSize="16dp"
+        android:paddingLeft="15dp"
+        android:paddingTop="1dp"/>
     <RadioGroup
         android:id="@+id/rgDay"
         android:layout_width="match_parent"
@@ -129,6 +140,18 @@
             android:textSize="12dp" />
     </RadioGroup>
 
+    <TextView
+        android:background="#e6e6fa"
+        android:layout_marginTop="12dp"
+        android:layout_marginBottom="5dp"
+        android:layout_marginLeft="2dp"
+        android:id="@+id/txtSettime"
+        android:layout_width="match_parent"
+        android:layout_height="24dp"
+        android:text="시간 설정"
+        android:textSize="16dp"
+        android:paddingLeft="15dp"
+        android:paddingTop="1dp"/>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -140,12 +163,14 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:text="수업시간"
-            android:textSize="20dp" />
+            android:textSize="17dp" />
 
         <Button
+            android:background="@drawable/button"
             android:id="@+id/btnStart"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="40dp"
+            android:textSize="15dp"
             android:layout_marginLeft="20dp"
             android:text="수업 시작" />
 
@@ -154,17 +179,20 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="5dp"
             android:text=" ~ "
-            android:textSize="20dp" />
+            android:textSize="17dp" />
 
         <Button
+            android:background="@drawable/button"
             android:id="@+id/btnEnd"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="40dp"
             android:layout_marginLeft="5dp"
+            android:textSize="15dp"
             android:text="수업 종료" />
     </LinearLayout>
 
     <LinearLayout
+        android:visibility="gone"
         android:id="@+id/paintColor"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -234,6 +262,7 @@
 
     </LinearLayout>
     <LinearLayout
+        android:visibility="gone"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
@@ -250,7 +279,7 @@
         <ImageButton
             android:layout_width="30dp"
             android:layout_height="30dp"
-            android:layout_margin="2dp"
+            android:layout_marginLeft="20dp"
             android:background="#cd03abff"
             android:onClick="clicked"
             android:tag="#cd03abff" />
@@ -258,7 +287,7 @@
         <ImageButton
             android:layout_width="30dp"
             android:layout_height="30dp"
-            android:layout_margin="2dp"
+            android:layout_marginLeft="20dp"
             android:background="#cddd03ff"
             android:onClick="clicked"
             android:tag="#cddd03ff" />
@@ -286,12 +315,23 @@
             android:tag="#cdfd7d41" />
     </LinearLayout>
 
-
+    <TextView
+        android:background="#e6e6fa"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="5dp"
+        android:layout_marginLeft="2dp"
+        android:id="@+id/txtSetmode"
+        android:layout_width="match_parent"
+        android:layout_height="24dp"
+        android:text="모드 설정"
+        android:textSize="16dp"
+        android:paddingLeft="15dp"
+        android:paddingTop="1dp"/>
     <RadioGroup
         android:id="@+id/rgMode"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="10dp"
         android:gravity="center"
         android:orientation="horizontal">
 
@@ -315,7 +355,6 @@
             android:id="@+id/rbVib"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
             android:checked="false"
             android:text="진동모드"
             android:textSize="15dp" />
@@ -324,7 +363,6 @@
             android:id="@+id/rbNoBell"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
             android:checked="false"
             android:text="무음모드"
             android:textSize="15dp" />
@@ -341,7 +379,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
-            android:src="@drawable/save32px" />
+            android:src="@drawable/save64px" />
 
         <ImageButton
             android:id="@+id/btnCancel"
@@ -349,6 +387,6 @@
             android:layout_height="wrap_content"
             android:layout_gravity="right"
             android:layout_margin="10dp"
-            android:src="@drawable/cancel32px" />
+            android:src="@drawable/cencel64px" />
     </GridLayout>
 </LinearLayout>
