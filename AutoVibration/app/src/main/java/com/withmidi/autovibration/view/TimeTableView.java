@@ -12,7 +12,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.withmidi.autovibration.R;
-import com.withmidi.autovibration.activity.AddScheduleActivity;
+import com.withmidi.autovibration.activity.schedule.AddScheduleActivity;
 import com.withmidi.autovibration.util.AttrSave;
 import com.withmidi.autovibration.util.TimeTableModel;
 

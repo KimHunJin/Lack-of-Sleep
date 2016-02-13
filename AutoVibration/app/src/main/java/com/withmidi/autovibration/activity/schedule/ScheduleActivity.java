@@ -1,6 +1,7 @@
 package com.withmidi.autovibration.activity.schedule;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
@@ -10,6 +11,7 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.withmidi.autovibration.R;
+import com.withmidi.autovibration.activity.calendar.CalendarActivity;
 import com.withmidi.autovibration.db.SQLManager;
 import com.withmidi.autovibration.util.TimeTableModel;
 import com.withmidi.autovibration.view.TimeTableView;
@@ -82,7 +84,7 @@ public class ScheduleActivity extends AppCompatActivity {
 
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_setweek) {
+        if (id == R.id.action_setWeek) {
             final String[] ArrayList = {"월요일 ~ 금요일", "월요일 ~ 토요일", "월요일 ~ 일요일"};
             AlertDialog.Builder dlg = new AlertDialog.Builder(ScheduleActivity.this);
             dlg.setTitle("요일 설정");
@@ -117,6 +119,10 @@ public class ScheduleActivity extends AppCompatActivity {
             dlg.setNegativeButton("취소", null);
             //설정이 모두 끝났으면 show로 뛰우기
             dlg.show();
+        }
+
+        if(id == R.id.intent_Calendar) {
+            startActivity(new Intent(getApplicationContext(),CalendarActivity.class));
         }
 
         return super.onOptionsItemSelected(item);
