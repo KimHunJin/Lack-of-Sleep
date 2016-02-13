@@ -1,4 +1,4 @@
-package com.withmidi.autovibration.activity;
+package com.withmidi.autovibration.activity.schedule;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
