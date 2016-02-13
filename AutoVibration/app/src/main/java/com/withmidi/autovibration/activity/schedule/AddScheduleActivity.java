@@ -146,23 +146,44 @@ public class AddScheduleActivity extends AppCompatActivity {
      */
     private void checkSaveType() {
         int startnum1 = Integer.valueOf(btnStart.getText().toString());
-        Log.e("test",startnum1+"");
         int endnum1 = Integer.valueOf(btnEnd.getText().toString());
-        Log.e("test",endnum1+"");
-        String week1 = ((RadioButton) findViewById(rgDay.getCheckedRadioButtonId())).getText().toString();
+
+        String day = ((RadioButton) findViewById(rgDay.getCheckedRadioButtonId())).getText().toString();
+        int week1=0;
+        if(day.equals("월")){
+             week1 = 1;
+        }
+        else if(day.equals("화")){
+             week1 = 2;
+        }
+        else if(day.equals("수")){
+             week1 = 3;
+        }
+        else if(day.equals("목")){
+             week1 = 4;
+        }
+        else if(day.equals("금")){
+             week1 = 5;
+        }
+        else if(day.equals("토")){
+             week1 = 6;
+        }
+        else if(day.equals("일")){
+             week1 = 7;
+        }
+
         String name1 = edtClassName.getText().toString();
         String teacher1 = edtClassPro.getText().toString();
         String classroom1 = edtClassRoom.getText().toString();
 
         if (type.equals("old")) {
             // schedule update query
-            sqlManager.update("UPDATE `schedule` SET `startnum`='"+this.startnum+"', `endnum`='"+this.endnum+"', `week`='"+this.week+"', `name`='"+this.name+"', `teacher`='"+this.teacher+"', `classroom`='"+this.classroom+"' WHERE `week`='" + week + "' AND `startnum`='" + startnum + "'");
+            sqlManager.update("UPDATE `schedule` SET `startnum`='"+startnum1+"', `endnum`='"+endnum1+"', `week`='"+week1+"', `name`='"+name1+"', `teacher`='"+teacher1+"', `classroom`='"+classroom1+"' WHERE `week`='" + week1 + "' AND `startnum`='" + startnum1 + "'");
         } else {
             // schedule insert query
-            Log.e("insert",startnum1+"d"+endnum1+"s"+week1+name1+teacher1+classroom1);
+            Log.e("insert",startnum+"d"+endnum+"s"+week+name+teacher+classroom);
             sqlManager.insert("INSERT INTO `schedule` (startnum,endnum,week,name,teacher,classroom) VALUES ('" + startnum1 + "', '" + endnum1 + "', '" + week1 + "', '"+name1+"', '"+teacher1+"', '"+classroom1+"')");
         }
-
         finish();
     }
 
@@ -214,8 +235,8 @@ public class AddScheduleActivity extends AppCompatActivity {
             edtClassPro.setText(teacher);
             edtClassRoom.setText(classroom);
 
-            btnStart.setText(startnum+1+"");
-            btnEnd.setText(endnum+1+"");
+            btnStart.setText(startnum+"");
+            btnEnd.setText(endnum+"");
         }
 
         switch (week){

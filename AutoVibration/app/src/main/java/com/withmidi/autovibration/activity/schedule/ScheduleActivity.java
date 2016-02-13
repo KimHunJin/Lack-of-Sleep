@@ -45,8 +45,11 @@ public class ScheduleActivity extends AppCompatActivity {
 
         mTimaTableView = (TimeTableView) findViewById(R.id.main_timetable_ly);
 
-
 //        sqlManager.insert("INSERT INTO `schedule` (startnum,endnum,week,name,teacher,classroom) VALUES ('" + 1 + "', '" + 2 + "', '" + 1 + "', 'test', 'test', '101')");
+
+
+
+
     }
 
     @Override
