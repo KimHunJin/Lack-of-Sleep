@@ -38,6 +38,7 @@ public class AddScheduleActivity extends AppCompatActivity implements View.OnCli
     String name = "";
     String teacher = "";
     String classroom = "";
+    String mode;
 
     EditText edtClassName, edtClassPro, edtClassRoom;
     RadioGroup rgDay;
@@ -153,6 +154,9 @@ public class AddScheduleActivity extends AppCompatActivity implements View.OnCli
         int startnum1 = Integer.valueOf(btnStart.getText().toString());
         int endnum1 = Integer.valueOf(btnEnd.getText().toString());
 
+        RadioButton selectedRadioButton = (RadioButton)findViewById(rgMode.getCheckedRadioButtonId());
+        mode = selectedRadioButton.getText().toString().trim();
+
         String day = ((RadioButton) findViewById(rgDay.getCheckedRadioButtonId())).getText().toString();
         int week1 = 0;
         if (day.equals("월")) {
@@ -230,6 +234,7 @@ public class AddScheduleActivity extends AppCompatActivity implements View.OnCli
 
         btnStart.setOnClickListener(this);
         btnEnd.setOnClickListener(this);
+
     }
 
     private void initializeSetting() {
