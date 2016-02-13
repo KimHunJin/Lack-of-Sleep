@@ -1,6 +1,8 @@
 <resources>
     <string name="app_name">AutoVibration</string>
-
+    <string name="action_reset">초기화</string>
+    <string name="action_setweek">요일 설정</string>
+    <string name="action_settings">설정</string>
 
     <string-array name="column">
         <item>5 (월 화 수 목 금)</item>
@@ -20,13 +22,5 @@
         <item>10</item>
         <item>11</item>
         <item>12</item>
-        <item>13</item>
-        <item>14</item>
-        <item>15</item>
-        <item>16</item>
-        <item>17</item>
-        <item>18</item>
-        <item>19</item>
-        <item>20</item>
     </string-array>
 </resources>

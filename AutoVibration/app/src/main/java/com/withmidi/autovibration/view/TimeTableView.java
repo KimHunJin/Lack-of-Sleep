@@ -1,6 +1,7 @@
 package com.withmidi.autovibration.view;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Canvas;
 import android.util.AttributeSet;
 import android.view.Gravity;
@@ -9,9 +10,10 @@ import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.withmidi.autovibration.R;
+import com.withmidi.autovibration.activity.AddScheduleActivity;
+import com.withmidi.autovibration.util.AttrSave;
 import com.withmidi.autovibration.util.TimeTableModel;
 
 import java.util.ArrayList;
@@ -26,22 +28,9 @@ public class TimeTableView extends LinearLayout {
             R.drawable.select_label_se, R.drawable.select_label_yiw,
             R.drawable.select_label_sy, R.drawable.select_label_yiwu,
             R.drawable.select_label_yi, R.drawable.select_label_wuw};
-    private final static int START = 0;
 
-//    public final static int MAXNUM = 5;
-//
-//    public final static int WEEKNUM = 7;
-
-    int maxnum = 3;
-    int weeknum = 7;
-
-    public void setMaxnum(int maxnum) {
-        this.maxnum = maxnum;
-    }
-
-    public void setWeeknum(int weeknum) {
-        this.weeknum = weeknum;
-    }
+    int maxnum = 9;
+    int weeknum = 6;
 
     private final static int TimeTableHeight = 50;
 
@@ -87,6 +76,13 @@ public class TimeTableView extends LinearLayout {
 
 
     private void initView() {
+        if(!AttrSave.getAppPreferences(getContext(),"maxnum").equals("")){
+            maxnum = Integer.valueOf(AttrSave.getAppPreferences(getContext(),"maxnum"));
+        }
+
+        if(!AttrSave.getAppPreferences(getContext(),"weeknum").equals("")){
+            weeknum = Integer.valueOf(AttrSave.getAppPreferences(getContext(),"weeknum"));
+        }
 
         mHorizontalWeekLayout = new LinearLayout(getContext());
         mHorizontalWeekLayout.setOrientation(HORIZONTAL);
@@ -184,10 +180,21 @@ public class TimeTableView extends LinearLayout {
             mStartView.addView(mTime);
             mStartView.addView(getWeekTransverseLine());
             final int num = i;
-            mTime.setOnClickListener(new OnClickListener() {
+//            mTime.setOnClickListener(new OnClickListener() {
+//                @Override
+//                public void onClick(View v) {
+//                    Toast.makeText(getContext(), week + "요일" + (start + num) + "교시", Toast.LENGTH_SHORT).show();
+//                }
+//            });
+            mTime.setOnLongClickListener(new OnLongClickListener() {
                 @Override
-                public void onClick(View v) {
-                    Toast.makeText(getContext(), week + "시" + (start + num) + "분", Toast.LENGTH_LONG).show();
+                public boolean onLongClick(View view) {
+                    Intent itAddSechedule = new Intent(getContext(),AddScheduleActivity.class);
+                    itAddSechedule.putExtra("type","new");
+                    itAddSechedule.putExtra("week",week);
+                    itAddSechedule.putExtra("startnum",start+num);
+                    getContext().startActivity(itAddSechedule);
+                    return false;
                 }
             });
 
@@ -230,15 +237,30 @@ public class TimeTableView extends LinearLayout {
         mTimeTableNameView.setWidth(dip2px(50));
         mTimeTableNameView.setTextSize(16);
         mTimeTableNameView.setGravity(Gravity.CENTER);
-        mTimeTableNameView.setText(model.getName() + "@" + model.getClassroom());
+        mTimeTableNameView.setText(model.getName() + "\n" + model.getClassroom());
         mTimeTableView.addView(mTimeTableNameView);
         mTimeTableView.addView(getWeekTransverseLine());
         mTimeTableView.setBackgroundDrawable(getContext().getResources()
                 .getDrawable(colors[getColorNum(model.getName())]));
-        mTimeTableView.setOnClickListener(new OnClickListener() {
+//        mTimeTableView.setOnClickListener(new OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Toast.makeText(getContext(), model.getName() + "@" + model.getClassroom(), Toast.LENGTH_SHORT).show();
+//            }
+//        });
+        mTimeTableView.setOnLongClickListener(new OnLongClickListener() {
             @Override
-            public void onClick(View v) {
-                Toast.makeText(getContext(), model.getName() + "@" + model.getClassroom(), Toast.LENGTH_LONG).show();
+            public boolean onLongClick(View view) {
+                Intent itAddSechedule = new Intent(getContext(),AddScheduleActivity.class);
+                itAddSechedule.putExtra("type","old");
+                itAddSechedule.putExtra("startnum",model.getStartnum());
+                itAddSechedule.putExtra("endnum",model.getEndnum());
+                itAddSechedule.putExtra("week",model.getWeek());
+                itAddSechedule.putExtra("name",model.getName());
+                itAddSechedule.putExtra("teacher",model.getTeacher());
+                itAddSechedule.putExtra("classroom",model.getClassroom());
+                getContext().startActivity(itAddSechedule);
+                return false;
             }
         });
         return mTimeTableView;
