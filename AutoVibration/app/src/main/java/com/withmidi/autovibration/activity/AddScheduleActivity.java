@@ -91,7 +91,7 @@ public class AddScheduleActivity extends AppCompatActivity {
     public void onScheduleClick(View v) {
         switch (v.getId()) {
             case R.id.btnSave : {
-                Intent it = new Intent(getApplicationContext(),CalendarActivity.class);
+                Intent it = new Intent(getApplicationContext(),ScheduleActivity.class);
                 it.putExtra("column",edtColumn.getText().toString().trim());
                 it.putExtra("low",edtLow.getText().toString().trim());
                 startActivity(it);
